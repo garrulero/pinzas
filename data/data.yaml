@@ -1,0 +1,6 @@
+# Configuración de Dataset para YOLOv8
+# Define las clases para la detección de pinzas
+
+names:
+  0: buen_estado
+  1: mal_estado
