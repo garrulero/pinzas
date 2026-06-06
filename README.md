@@ -2,7 +2,7 @@
 
 Este repositorio contiene un proyecto de Visión Computacional integral (*end-to-end*) diseñado para automatizar el control de calidad en entornos de fabricación. Utilizando la arquitectura **YOLOv8**, el modelo es capaz de detectar, localizar y clasificar pinzas industriales en tiempo real en dos categorías: funcionales (`pinza_apta`) y defectuosas (`pinza_defectuosa`).
 
-Desarrollado como proyecto principal de porfolio durante mi Bootcamp de Ciencia de Datos e Inteligencia Artificial.
+Desarrollado como proyecto principal de porfolio.
 
 ---
 
