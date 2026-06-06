@@ -1,6 +1,6 @@
 # 🔍 Visión Computacional para el Control de Calidad Industrial: Detección de Defectos en Pinzas con YOLOv8
 
-Este proyecto consiste en el desarrollo e implementación de una solución integral (*end-to-end*) de Visión Computacional diseñada para automatizar el control de calidad en líneas de producción industrial. Utilizando la arquitectura **YOLOv8**, el modelo es capaz de detectar, localizar y clasificar pinzas en tiempo real en dos categorías diferenciadas: funcionales (`pinza_apta`) y defectuosas (`pinza_defectuosa`).
+Este proyecto consiste en el desarrollo e implementación de una solución de Visión Computacional integral (*end-to-end*) diseñada de forma totalmente independiente para automatizar el control de calidad en líneas de producción industrial. Utilizando la arquitectura **YOLOv8**, el modelo es capaz de detectar, localizar y clasificar pinzas en tiempo real en dos categorías diferenciadas: funcionales (`pinza_apta`) y defectuosas (`pinza_defectuosa`).
 
 El objetivo principal es reducir el margen de error humano en inspecciones visuales repetitivas, optimizando los tiempos de empaquetado y asegurando que solo los componentes que cumplen con los estándares de calidad avancen en la cadena de distribución.
 
@@ -28,17 +28,22 @@ El modelo ha sido evaluado exhaustivamente utilizando un conjunto de datos de pr
 
 > 💡 **Análisis Técnico:** El modelo alcanza una tasa de precisión del 97.2%, lo que garantiza una minimización drástica de los falsos positivos. En el contexto de control de calidad, esto evita el descarte erróneo de piezas perfectamente funcionales, optimizando los costes de material.
 
+### Curvas de Aprendizaje y Métricas de Validación
+A continuación se muestran las curvas de pérdida (*loss*) tanto de entrenamiento como de validación, junto con la evolución de la Precisión, el Recall y el mAP global recolectados durante la sesión de entrenamiento:
+
+![Curvas de Entrenamiento y Pérdidas](training_plots.png)
+
 ---
 
 ## ⚙️ Configuración del Entrenamiento e Hiperparámetros (`args.yaml`)
-Para asegurar la reproducibilidad del experimento, el proceso de entrenamiento se ejecutó de acuerdo con los parámetros técnicos registrados en el archivo `args.yaml`[cite: 1]:
+Para garantizar la total reproducibilidad del proyecto, el proceso de entrenamiento se rigió estrictamente por los parámetros técnicos registrados en el archivo `args.yaml`[cite: 1]:
 
-* **Modelo Base:** `yolov8s.pt` (YOLOv8 Small), elegido para asegurar un compromiso óptimo entre una alta velocidad de inferencia en milisegundos y la precisión necesaria para capturar anomalías estructurales pequeñas[cite: 1].
-* **Tipo de Tarea:** Configurado específicamente para la detección y localización de objetos (`task: detect`, `mode: train`)[cite: 1].
-* **Resolución de Entrada (`imgsz`):** Imágenes normalizadas a una resolución de 640x640 píxeles[cite: 1].
-* **Épocas de Entrenamiento (`epochs`):** 50 épocas completas[cite: 1].
-* **Tamaño de Lote (`batch`):** 16 imágenes por lote[cite: 1].
-* **Aumentación de Datos:** Se emplearon técnicas avanzadas como el uso de Mosaic (1.0)[cite: 1] y giros horizontales (`fliplr: 0.5`)[cite: 1] con el fin de robustecer el modelo ante variaciones críticas de luz, rotación y encuadre de la cámara en la planta de producción.
+* **Modelo Base**: `yolov8s.pt` (YOLOv8 Small), elegido para asegurar un compromiso óptimo entre una alta velocidad de inferencia en milisegundos y la precisión necesaria para capturar anomalías estructurales pequeñas[cite: 1].
+* **Tipo de Tarea**: Configurado específicamente para la detección y localización de objetos (`task: detect`, `mode: train`)[cite: 1].
+* **Resolución de Entrada (`imgsz`)**: Imágenes normalizadas a una resolución de 640x640 píxeles[cite: 1].
+* **Épocas de Entrenamiento (`epochs`)**: 50 épocas completas[cite: 1].
+* **Tamaño de Lote (`batch`)**: 16 imágenes por lote[cite: 1].
+* **Aumentación de Datos**: Se emplearon técnicas avanzadas como el uso de Mosaic (1.0)[cite: 1] y giros horizontales (`fliplr: 0.5`)[cite: 1] con el fin de robustecer el modelo ante variaciones críticas de luz, rotación y encuadre de la cámara en la planta de producción.
 
 ---
 
