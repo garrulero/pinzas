@@ -1,56 +1,56 @@
-# 🔍 Computer Vision for Industrial Quality Control: Clamp Defect Detection using YOLOv8
+# 🔍 Visión Computacional para el Control de Calidad Industrial: Detección de Defectos en Pinzas con YOLOv8
 
-This repository features an end-to-end Computer Vision project designed to automate quality control in manufacturing environments. Utilizing the **YOLOv8** architecture, the model accurately detects, localizes, and classifies industrial clamps in real-time into two categories: functional (`pinza_apta`) and defective (`pinza_defectuosa`).
+Este repositorio contiene un proyecto de Visión Computacional integral (*end-to-end*) diseñado para automatizar el control de calidad en entornos de fabricación. Utilizando la arquitectura **YOLOv8**, el modelo es capaz de detectar, localizar y clasificar pinzas industriales en tiempo real en dos categorías: funcionales (`pinza_apta`) y defectuosas (`pinza_defectuosa`).
 
-Developed as a core portfolio project during my Data Science & Artificial Intelligence Bootcamp.
+Desarrollado como proyecto principal de porfolio durante mi Bootcamp de Ciencia de Datos e Inteligencia Artificial.
 
 ---
 
-## 🛠️ Tech Stack & Tools
-* **Language:** Python 3.x
-* **Core Framework:** Ultralytics YOLOv8
-* **Training Environment:** Google Colab (GPU Accelerated)
-* **Dataset Management & Annotations:** Roboflow (Project: `MVP_Pinzas_Feria`)
+## 🛠️ Tecnologías y Herramientas
+* **Lenguaje:** Python 3.x
+* **Framework Principal:** Ultralytics YOLOv8
+* **Entorno de Entrenamiento:** Google Colab (Acelerado por GPU)
+* **Gestión de Dataset y Etiquetado:** Roboflow (Proyecto: `MVP_Pinzas_Feria`)
 
-## 📊 Model Performance & Evaluation
-The model was evaluated using an independent test set, showcasing robust metrics ready for industrial deployment constraints:
+## 📊 Rendimiento y Evaluación del Modelo
+El modelo fue evaluado utilizando un conjunto de prueba independiente, mostrando métricas sólidas y listas para las restricciones de un despliegue en entornos industriales:
 
-| Metric | Value |
+| Métrica | Valor |
 | :--- | :--- |
-| **mAP@50** (Overall) | **92.1%** |
-| **Precision** | **97.2%** |
-| **Recall** | **94.7%** |
+| **mAP@50** (Global) | **92.1%** |
+| **Precisión (Precision)** | **97.2%** |
+| **Exhaustividad (Recall)** | **94.7%** |
 | **F1-Score** | **95.9%** |
 
-### Per-Class Accuracy (mAP@50)
-* **`pinza_apta` (Functional):** 100%
-* **`pinza_defectuosa` (Defective):** 92.0%
+### Precisión por Clase (mAP@50)
+* **`pinza_apta` (Funcional):** 100%
+* **`pinza_defectuosa` (Defectuosa):** 92.0%
 
-> 💡 **Key Insight:** The model achieves a near-perfect precision rate (97.2%), meaning false positives are minimized—a critical requirement in quality assurance pipelines to avoid discarding flawless components.
-
----
-
-## ⚙️ Training Configuration (`args.yaml`)
-To ensure full reproducibility, the training process adhered strictly to the parameters documented in the `args.yaml` file:
-
-* **Base Weights:** `yolov8s.pt` (YOLOv8 Small - selected for its optimal trade-off between inference speed and accuracy on small defects).
-* **Task Mode:** Object Detection (`task: detect`, `mode: train`).
-* **Input Resolution (`imgsz`):** 640x640 pixels.
-* **Epochs:** 50.
-* **Batch Size:** 16.
-* **Data Augmentation:** Advanced techniques such as Mosaic (1.0) and horizontal flips (`fliplr: 0.5`) were applied to increase model resilience against variations in lighting, rotation, and camera placement on the factory floor.
+> 💡 **Insight Clave:** El modelo alcanza una tasa de precisión casi perfecta (97.2%), lo que significa que los falsos positivos se minimizan al máximo. Este es un requisito crítico en las líneas de control de calidad para evitar descartar componentes que están en perfecto estado.
 
 ---
 
-## 📁 Repository Structure
-While the full training imagery dataset remains private due to platform license constraints, this repository provides a fully functional testing environment:
+## ⚙️ Configuración del Entrenamiento (`args.yaml`)
+Para garantizar la total reproducibilidad del proyecto, el proceso de entrenamiento se rigió estrictamente por los parámetros documentados en el archivo `args.yaml`[cite: 1]:
+
+* **Pesos Base:** `yolov8s.pt` (YOLOv8 Small - seleccionado por su equilibrio óptimo entre velocidad de inferencia en tiempo real y precisión en defectos pequeños)[cite: 1].
+* **Modo de Tarea:** Detección de Objetos (`task: detect`, `mode: train`)[cite: 1].
+* **Resolución de Entrada (`imgsz`):** 640x640 píxeles[cite: 1].
+* **Épocas (Epochs):** 50[cite: 1].
+* **Tamaño de Lote (Batch Size):** 16[cite: 1].
+* **Aumentación de Datos:** Se aplicaron técnicas avanzadas como Mosaic (1.0)[cite: 1] y giros horizontales (`fliplr: 0.5`)[cite: 1] para aumentar la resiliencia del modelo ante variaciones de iluminación, rotación y colocación de la cámara en la planta de producción.
+
+---
+
+## 📁 Estructura del Repositorio
+Aunque el dataset completo de imágenes de entrenamiento permanece privado debido a las restricciones de la licencia de la plataforma, este repositorio proporciona un entorno de pruebas completamente funcional:
 
 ```text
 ├── data/
-│   ├── sample_images/     # Raw images to test model inference
-│   └── data.yaml          # Dataset class definitions
+│   ├── sample_images/     # Imágenes en bruto para probar la inferencia del modelo
+│   └── data.yaml          # Definición de clases del dataset
 ├── models/
-│   └── best.pt            # Final trained model weights ready for production
+│   └── best.pt            # Pesos finales del modelo entrenado listos para producción
 ├── src/
-│   └── predict.py         # Custom Python script for inference pipelines
-└── args.yaml              # Original hyperparameters file
+│   └── predict.py         # Script personalizado en Python para pipelines de inferencia
+└── args.yaml              # Archivo original de hiperparámetros[cite: 1]
